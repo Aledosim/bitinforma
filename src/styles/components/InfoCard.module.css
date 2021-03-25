@@ -1,0 +1,20 @@
+.infoCardContainer {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid #767272;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 25px;
+
+    padding: 2rem 2rem 2.5rem 1.9rem;
+}
+
+.header {
+    margin-bottom: 1.9rem;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.price {
+    margin-top: 0.5rem;
+}

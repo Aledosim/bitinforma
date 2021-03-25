@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import TopBar from './TopBar';
+import InfoCard from './InfoCard.js';
 
 it('renders without crashing', () => {
-    render(<TopBar />)
+    render(<InfoCard />)
 });

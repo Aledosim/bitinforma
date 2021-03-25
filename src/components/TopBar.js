@@ -1,19 +1,18 @@
 import React from 'react';
 
-import '../styles/topbar.css'
+import logo from "../images/logo.svg"
+import styles from '../styles/components/TopBar.module.css'
 
 export default function TopBar(){
     return(
-        <div id='topbar'>
-            <div>
-                <img src='logo.svg' alt='logo'></img>
-            </div>
-            <div>
-                <form>
-                    <input type='search' id='searchfield' name='searchfield'></input>
-                    <input type='button' name='searchfield'></input>
-                </form>
-            </div>
-        </div>
+        <header id='topbar' className={styles.topBar}>
+            <span>
+                <img className={styles.logo} src={logo} alt='logo'></img>
+            </span>
+            <span className={styles.searchFieldContainer}>
+                <input type='search' name='searchField'></input>
+                <input type='button' name='searchField'></input>
+            </span>
+        </header>
     );
 };
