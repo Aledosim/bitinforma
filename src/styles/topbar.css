@@ -1,0 +1,13 @@
+div#topbar {
+    display: flex;
+    text-align: center;
+    background-color: gray;
+}
+
+div div:first-of-type {
+    padding: 2px 5px 2px 0.5rem;
+}
+
+form {
+    background-color: blue;
+}
