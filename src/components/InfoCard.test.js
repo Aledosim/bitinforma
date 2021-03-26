@@ -1,8 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import XMLHttpRequestMock from 'xmlhttprequest-jest-mock';
 
-import InfoCard from './InfoCard.js';
+import InfoCard,{ request } from './InfoCard.js';
 
-it('renders without crashing', () => {
-    render(<InfoCard />)
-});
+describe('<InfoCard /> tests', () => {
+    it('renders without crashing', () => {
+        render(<InfoCard />)
+    });
+})
+
