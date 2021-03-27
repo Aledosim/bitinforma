@@ -3,12 +3,13 @@
 # dependencies
 /node_modules
 
-# React documentation
+# React
 /README.md
 
-# Cypress examples
+# Cypress
 /cypress/fixtures/example.json
 /cypress/integration/examples/
+/cypress/videos
 
 # testing
 /coverage

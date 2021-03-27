@@ -2,11 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import XMLHttpRequestMock from 'xmlhttprequest-jest-mock';
 
-import InfoCard,{ request } from './InfoCard.js';
+import CurrencyProvider from '../contexts/Currency'
+import InfoCard from './InfoCard';
 
 describe('<InfoCard /> tests', () => {
     it('renders without crashing', () => {
-        render(<InfoCard />)
-    });
+        render(<CurrencyProvider><InfoCard /></CurrencyProvider>)
 })
 

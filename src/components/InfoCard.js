@@ -1,33 +1,65 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { CurrencyContext } from '../contexts/CurrencyContext'
 
 import bitcoin_logo from '../images/bitcoin_logo.svg'
 import styles from '../styles/components/InfoCard.module.css'
 
 export default function InfoCard() {
-    const [price, setPrice] = useState(0)
+    const {
+        currency,
+        vol,
+        closing,
+        volBRL
+    } = useContext(CurrencyContext)
 
-    function request() {
-        const date = new Date(2021, 2, 25)
-        const year = date.getFullYear()
-        const month = date.getMonth() + 1
-        const day = date.getDate()
-        const url = `https://www.mercadobitcoin.net/api/BTC/day-summary/${year}/${month}/${day}/`
+    const [volOut, setVolOut] = useState()
+    const [closingOut, setClosingOut] = useState()
+    const [volBRLOut, setVolBRLOut] = useState()
 
-		fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                var rawPrice = data.avg_price
-                rawPrice = Math.round(rawPrice) / 1000
+    useEffect(() => {
+        volHandler(vol)
+        closingHandler(closing)
+        volBRLHandler(volBRL)
+    }, [currency])
 
-                var priceInt
-                var priceDecimal
+    function volHandler(rawVol) {
+        rawVol = Math.trunc(rawVol * 100) / 100
 
-                [ priceInt, priceDecimal ] = String(rawPrice).split('.')
-                setPrice(priceInt + '.' + priceDecimal.padEnd(3, '0'))
-            })
+        var volInt
+        var volDecimal
+        [ volInt, volDecimal ] = String(rawVol).split('.')
+
+        if (typeof(volDecimal) == 'undefined') {
+            volDecimal = '0'
+        }
+        setVolOut(volInt + ',' + volDecimal.padEnd(2, '0'))
     }
 
-    useEffect(request)
+    function closingHandler(rawClosing) {
+        rawClosing = Math.round(rawClosing) / 1000
+
+        var closingInt
+        var closingDecimal
+        [ closingInt, closingDecimal ] = String(rawClosing).split('.')
+
+        if (typeof(closingDecimal) == 'undefined') {
+            closingDecimal = '0'
+        }
+
+        setClosingOut(closingInt + '.' + closingDecimal.padEnd(3, '0'))
+    }
+
+    function volBRLHandler(rawVol) {
+        console.log(rawVol)
+        // const vol = rawVol.toLocaleString('pt-br', {
+        //     style: 'currency',
+        //     currency: 'BRL',
+        //     minimumFractionDigits: 2
+        // })
+        const vol = rawVol
+        setVolBRLOut(vol)
+    }
 
     return(
         <div id='infocard' className={styles.infoCardContainer}>
@@ -36,15 +68,15 @@ export default function InfoCard() {
                     <img src={bitcoin_logo} alt='bitcoin logo'></img>
                 </div>
                 <div id='price' className={styles.price}>
-                    R$ {price}
+                    R$ {closingOut}
                 </div>
             </header>
             <div>
-                <p>
-                    300,30 bitcoins negociados nas últimas 24hs
+                <p id='volume'>
+                    {volOut} bitcoins negociados nas últimas 24hs
                 </p>
-                <p>
-                    Um total de R$ 91.615.809,16
+                <p id='total'>
+                    Um total de R$ {volBRLOut}
                 </p>
                 <div>
                     Veja mais ->
