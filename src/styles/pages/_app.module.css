@@ -2,14 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+
+    background-color: var(--white);
 }
 
 .topBarContainer {
     width: 100%;
 }
 
+.backgroundContainer {
+    width: 100%;
+}
+
 .cardsContainer {
+    position: absolute;
+    top: 15rem;
+    
     display: flex;
-    justify-content: space-around;
-    margin: 5rem 5rem 0 5rem;
+
+    height: 50%;
+    margin: auto;
+    /* margin: 5rem 5rem 0 5rem; */
 }

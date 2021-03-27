@@ -36,14 +36,16 @@ export const CurrencyContext = createContext()
 
 export default function CurrencyProvider({children}) {
     const [currency, setCurrency] = useState('BTC')
-    const [high, setHigh] = useState()
-    const [low, setLow] = useState()
-    const [vol, setVol] = useState()
-    const [last, setLast] = useState()
-    const [buy, setBuy] = useState()
-    const [sell, setSell] = useState()
-    const [closing, setClosing] = useState()
-    const [volBRL, setVolBRL] = useState()
+    const [high, setHigh] = useState('0')
+    const [low, setLow] = useState('0')
+    const [vol, setVol] = useState('0')
+    const [last, setLast] = useState('0')
+    const [buy, setBuy] = useState('0')
+    const [sell, setSell] = useState('0')
+    const [closing, setClosing] = useState('0')
+    const [volBRL, setVolBRL] = useState('0')
+
+    useEffect(update, [currency])
 
     function search() {
         const searchField  = document.getElementById('searchField')
@@ -51,8 +53,10 @@ export default function CurrencyProvider({children}) {
 
         if (coins.includes(text)) {
             setCurrency(text)
+            searchField.value = ''
         } else {
-            console.log("retorna algum erro")
+            searchField.value = ''
+            searchField.placeholder = 'Termo inválido'
         }
     }
 
@@ -86,8 +90,6 @@ export default function CurrencyProvider({children}) {
                 setVolBRL(data.volume)
             })
     }
-
-    useEffect(update, [currency])
 
     return(
         <CurrencyContext.Provider value={{

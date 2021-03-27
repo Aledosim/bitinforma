@@ -8,6 +8,15 @@
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
+
+    background-color: var(--white);
+
+    max-width: 904px;
+    max-height: 362px;
+    min-width: 330px;
+    min-height: 179px;
+
+    margin-left: 2.8rem;
 }
 
 .header {
@@ -20,22 +29,49 @@
 
 .header > div:last-child {
     align-self: flex-end;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--black);
 }
 
 .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .content > p {
-    margin-bottom: 0.9rem;
+    margin-bottom: 0.7rem;
 }
 
+/* Lines icons */
 .content > p > span:first-of-type {
     margin-right: 1.3rem;
 }
 
+/* Adjust of the icons on first and second lines */
+.content > p:first-of-type > span:first-of-type, .content> p:first-of-type + p > span:first-of-type {
+    margin-right: 1.8rem;
+} 
+
+/* Text */
+.content > p > span:first-of-type + span {
+    font-size: 18px;
+    line-height: 27px;
+
+    color: var(--black);
+}
+
+/* Numbers */
 .content > p > span:last-of-type {
     margin-left: 0.5rem;
+
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+
+    text-decoration-line: underline;
+
+    color: var(--text-highlight);
 }

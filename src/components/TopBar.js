@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 
 import logo from "../images/logo.svg"
+import search_icon from '../images/search_icon.svg'
+
 import styles from '../styles/components/TopBar.module.css'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
@@ -12,13 +14,22 @@ export default function TopBar(){
 
     return(
         <header id='topbar' className={styles.topBar}>
-            <span>
+            <div>
                 <img className={styles.logo} src={logo} alt='logo'></img>
-            </span>
-            <span className={styles.searchFieldContainer}>
-                <input id='searchField' type='search' name='searchField'></input>
-                <input type='button' name='searchField' onClick={search}></input>
-            </span>
+            </div>
+            <div className={styles.searchFieldContainer}>
+                <input
+                    id='searchField'
+                    type='text'
+                    name='searchField'
+                    placeholder='Buscar por uma moeda'
+                />
+                <img
+                    src={search_icon}
+                    alt='search button'
+                    onClick={search}
+                />
+            </div>
         </header>
     );
 };

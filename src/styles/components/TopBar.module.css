@@ -1,25 +1,49 @@
 .topBar {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
     width: 100%;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
 
-    background-color: red;
+    background-color: var(--white);
     border: 0.5px solid #838181;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.topBar::after {
-    content: "";
-    width: 5px;
-    background-color: yellow;
-}
-
 .logo {
+    margin-left: 2.5rem;
 }
 
 .searchFieldContainer {
+    position: relative;
+
+    margin: auto;
+
+    width: 30rem;
+    height: 3rem;
+
     display: flex;
     align-items: center;
-    background-color: gray;
+}
+
+.searchFieldContainer > input {
+    width: 100%;
+    height: 100%;
+    padding-right: 4rem;
+    padding-left: 2rem;
+
+    background-color: #F4F1F1;
+    border: none;
+    border-radius: 10px;
+}
+
+.searchFieldContainer > input::placeholder {
+    color: rgba(0, 0, 0, 0.46);
+}
+
+.searchFieldContainer > img {
+    position: absolute;
+    transform: translateX(-100%);
+    left: 95%;
+    height: 70%;
 }

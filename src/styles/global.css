@@ -5,19 +5,14 @@
 }
 
 :root {
-    --white: #fff;
+    --white: #FFFFFF;
     --background: #E5E5E5;
     --black: #1E2327;
-    --gray-line: #DCDDE0;
-    --text: #666666;
-    --text-highlight: #B3B9FF;
-    --title: #2E384D;
-    --red: #E83F5B;
-    --green: #4CD62B;
-    --blue: #5965E0;
-    --blue-dark: #4953B8;
-    --blue-twitter: #2AA9E0;
-
+    --gray-line: #C4C4C4;
+    --text: #858383;
+    --text-highlight: #E4A22B;
+    --title: #000000;
+    --blue: #2777C0;
 }
 
 @media(max-width: 1080px) {
@@ -38,7 +33,10 @@ body {
 }
 
 body, input, textarea, input {
-    font: 400 1rem 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    line-height: 27px;
 }
 
 button {

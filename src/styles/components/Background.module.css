@@ -1,0 +1,10 @@
+.backgroundContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    z-index: -1;
+    transform: translateY(-0.5rem);
+    overflow: hidden;
+}
+

@@ -1,13 +1,19 @@
 .infoCardContainer {
     display: flex;
     flex-direction: column;
+    padding: 2rem 2rem 2.5rem 1.9rem;
 
     border: 1px solid #767272;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 
-    padding: 2rem 2rem 2.5rem 1.9rem;
+    max-width: 340px;
+    max-height: 362px;
+    min-width: 244px;
+    min-height: 260px;
+
+    background-color: var(--white);
 }
 
 .header {
@@ -17,4 +23,18 @@
 
 .price {
     margin-top: 0.5rem;
+    color: var(--black);
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.infoCardContainer > div > p {
+    font-size: 18px;
+}
+
+.infoCardContainer > div > div {
+    font-size: 18px;
+    text-align: right;
+    margin-top: 2rem;
+    color: var(--blue);
 }

@@ -7,7 +7,6 @@ import styles from '../styles/components/InfoCard.module.css'
 
 export default function InfoCard() {
     const {
-        currency,
         vol,
         closing,
         volBRL
@@ -17,11 +16,9 @@ export default function InfoCard() {
     const [closingOut, setClosingOut] = useState()
     const [volBRLOut, setVolBRLOut] = useState()
 
-    useEffect(() => {
-        volHandler(vol)
-        closingHandler(closing)
-        volBRLHandler(volBRL)
-    }, [currency])
+    useEffect(() => volHandler(vol), [vol])
+    useEffect(() => closingHandler(closing), [closing])
+    useEffect(() => volBRLHandler(volBRL), [volBRL])
 
     function volHandler(rawVol) {
         rawVol = Math.trunc(rawVol * 100) / 100
@@ -51,13 +48,11 @@ export default function InfoCard() {
     }
 
     function volBRLHandler(rawVol) {
-        console.log(rawVol)
-        // const vol = rawVol.toLocaleString('pt-br', {
-        //     style: 'currency',
-        //     currency: 'BRL',
-        //     minimumFractionDigits: 2
-        // })
-        const vol = rawVol
+        const vol = rawVol.toLocaleString('pt-br', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2
+        })
         setVolBRLOut(vol)
     }
 
@@ -76,10 +71,10 @@ export default function InfoCard() {
                     {volOut} bitcoins negociados nas últimas 24hs
                 </p>
                 <p id='total'>
-                    Um total de R$ {volBRLOut}
+                    Um total de {volBRLOut}
                 </p>
                 <div>
-                    Veja mais ->
+                    <a href='https://www.mercadobitcoin.com.br/negociacoes'>Veja mais -></a>
                 </div>
             </div>
         </div>
