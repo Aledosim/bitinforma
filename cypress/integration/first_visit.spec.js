@@ -1,5 +1,5 @@
 it('Gus first impressions', () => {
-    cy.intercept(/\/ticker/).as('ticker')
+    cy.intercept(/mercadobitcoin/).as('mercado_request')
 
     // Gus wants to know about bitcoin and visits BitInforma home page
     cy.visit('/')
@@ -7,7 +7,7 @@ it('Gus first impressions', () => {
     // He notes the the topbar with the BitInforma logo and the search field
     cy.get('#topbar').should('be.visible')
     cy.get('#topbar').find('img[class*="logo"]').should('be.visible')
-    cy.get('#topbar').find('input[type="search"]').should('be.visible')
+    cy.get('#topbar').get('#searchField').should('be.visible')
 
     // The logo is on the right side and the search field is at the center
     // logodiv.should('have.css', 'align-self', 'flex-start')
@@ -19,7 +19,7 @@ it('Gus first impressions', () => {
     //cy.get('#background').should('be.visible')
 
     // Gus reads the bitcoin price
-    cy.wait('@ticker').should(() => {
+    cy.wait('@mercado_request').should(() => {
 
         cy.get('#price').should('be.visible')
 
