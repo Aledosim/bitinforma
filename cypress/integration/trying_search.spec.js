@@ -12,17 +12,19 @@ it('Gus wants to search for other cryptocoins', () => {
             const firstPrice = $div.text()
 
             // Imediately he tries writing some search term
-            cy.get('#topbar').get('input[type=search]').type('ETH')
+            cy.get('#topbar').get('input#searchField').type('ETH')
                 .then(() => {
 
                     // ...and hit the search button
-                    cy.get('#topbar').get('input[type=button]').click()
+                    cy.get('#topbar').get('img#searchField').click()
 
                 })
                 .wait('@ticker').should(() => {
 
                     // Gus now sees the difference in prices
                     cy.get('#price').its('text').should('not.be.equal', firstPrice)
+                    // and in the currency name
+                    // cy.get('#logo')
 
                     // And the price is formated accordingly
                     cy.get('#price').should(($div) => {

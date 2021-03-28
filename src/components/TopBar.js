@@ -25,6 +25,7 @@ export default function TopBar(){
                     placeholder='Buscar por uma moeda'
                 />
                 <img
+                    id='searchField'
                     src={search_icon}
                     alt='search button'
                     onClick={search}
