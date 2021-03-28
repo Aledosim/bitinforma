@@ -8,7 +8,7 @@ import back_down from '../images/back_down.svg'
 export default function Background() {
 
     return(
-        <div className={styles.backgroundContainer}>
+        <div data-cy='background' className={styles.backgroundContainer}>
             <div>
                 <img
                     src={back_up}

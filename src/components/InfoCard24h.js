@@ -7,7 +7,7 @@ import down_arrow from '../images/down_arrow.svg'
 import price_tag from '../images/price_tag.svg'
 import price_up from '../images/price_up.svg'
 import price_down from '../images/price_down.svg'
-import bitcoin_logo from '../images/bitcoin_logo.svg'
+import coinLogo from '../images/coin/btc.svg'
 import styles from '../styles/components/InfoCard24h.module.css'
 
 export default function InfoCard24h(){
@@ -21,10 +21,10 @@ export default function InfoCard24h(){
     } = useContext(CurrencyContext)
 
     return(
-        <div id='infocard24h' className={styles.infoCard24hContainer}>
+        <div data-cy='infocard24h' className={styles.infoCard24hContainer}>
             <header className={styles.header}>
                 <div>
-                    <img src={bitcoin_logo} alt='bitcoin logo'></img>
+                    <img src={coinLogo} alt='bitcoin logo'></img>
                 </div>
                 <div>Nas ultimas 24h</div>
             </header>

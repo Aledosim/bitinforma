@@ -2,14 +2,18 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
-import bitcoin_logo from '../images/bitcoin_logo.svg'
+import CoinLogo from './CoinLogo'
+
+import coinLogo from '../images/coin/btc.svg'
 import styles from '../styles/components/InfoCard.module.css'
 
 export default function InfoCard() {
+
     const {
         vol,
         closing,
-        volBRL
+        volBRL,
+        currencyName
     } = useContext(CurrencyContext)
 
     const [volOut, setVolOut] = useState()
@@ -57,11 +61,9 @@ export default function InfoCard() {
     }
 
     return(
-        <div id='infocard' className={styles.infoCardContainer}>
+        <div data-cy='infocard' className={styles.infoCardContainer}>
             <header className={styles.header}>
-                <div>
-                    <img src={bitcoin_logo} alt='bitcoin logo'></img>
-                </div>
+                <CoinLogo currencyName={currencyName} />
                 <div id='price' className={styles.price}>
                     R$ {closingOut}
                 </div>
