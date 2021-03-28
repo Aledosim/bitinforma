@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import styles from '../styles/components/Background.module.css'
 
@@ -12,11 +12,13 @@ export default function Background() {
             <div>
                 <img
                     src={back_up}
+                    alt='backgroud'
                 />
             </div>
             <div>
                 <img
                     src={back_down}
+                    alt='backgroud'
                 />
             </div>
         </div>

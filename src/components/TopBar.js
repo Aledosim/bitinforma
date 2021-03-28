@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
 import logo from "../images/logo.svg"
 import search_icon from '../images/search_icon.svg'
@@ -31,5 +31,5 @@ export default function TopBar(){
                 />
             </div>
         </header>
-    );
-};
+    )
+}

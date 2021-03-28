@@ -1,41 +1,43 @@
-import React, { useState, useEffect, createContext } from 'react';
-const coins = [
-    'ACMFT',
-    'ACORDO01',
-    'ASRFT',
-    'ATMFT',
-    'BCH',
-    'BTC',
-    'CAIFT',
-    'CHZ',
-    'ETH',
-    'GALFT',
-    'IMOB01',
-    'JUVFT',
-    'LINK',
-    'LTC',
-    'MBCONS01',
-    'MBCONS02',
-    'MBFP01',
-    'MBFP02',
-    'MBPRK01',
-    'MBPRK02',
-    'MBPRK03',
-    'MBPRK04',
-    'MBVASCO01',
-    'MCO2',
-    'OGFT',
-    'PAXG',
-    'PSGFT',
-    'USDC',
-    'WBX',
-    'XRP',
-]
+import React, { useState, useEffect, createContext } from 'react'
+
+const coins = {
+    "acmft": "Fan Token ASR",
+    "acordo01": "None",
+    "asrft": "Fan Token ASR",
+    "atmft": "Fan Token ATM",
+    "bch": "Bitcoin Cash",
+    "btc": "Bitcoin",
+    "caift": "Fan Token CAI",
+    "chz": "Chiliz",
+    "eth": "Ethereum",
+    "galft": "Fan Token GAL",
+    "imob01": "None",
+    "juvft": "Fan Token JUV",
+    "link": "CHAINLINK",
+    "ltc": "Litecoin",
+    "mbcons01": "Cota de Consórcio 01",
+    "mbcons02": "Cota de Consórcio 02",
+    "mbfp01": "None",
+    "mbfp02": "None",
+    "mbprk01": "Precatório MB SP01",
+    "mbprk02": "Precatório MB SP02",
+    "mbprk03": "Precatório MB BR03",
+    "mbprk04": "Precatório MB RJ04",
+    "mbvasco01": "MBVASCO01",
+    "mco2": "MCO2",
+    "ogft": "Fan Token ASR",
+    "paxg": "PAX Gold",
+    "psgft": "Fan Token PSG",
+    "usdc": "USD Coin",
+    "wbx": "WiBX",
+    "xrp": "XRP",
+}
 
 export const CurrencyContext = createContext()
 
 export default function CurrencyProvider({children}) {
     const [currency, setCurrency] = useState('BTC')
+    const [currencyName, setCurrencyName] = useState('Bitcoin')
     const [high, setHigh] = useState('0')
     const [low, setLow] = useState('0')
     const [vol, setVol] = useState('0')
@@ -49,14 +51,14 @@ export default function CurrencyProvider({children}) {
 
     function search() {
         const searchField  = document.getElementById('searchField')
-        const text = searchField.value.toUpperCase()
+        const text = searchField.value.toLowerCase()
 
-        if (coins.includes(text)) {
+        if (Object.keys(coins).includes(text)) {
             setCurrency(text)
             searchField.value = ''
         } else {
             searchField.value = ''
-            searchField.placeholder = 'Termo inválido'
+            searchField.placeholder = 'Utilize o código da moeda (ex. BTC, ETH, etc.)'
         }
     }
 
@@ -89,6 +91,8 @@ export default function CurrencyProvider({children}) {
                 setClosing(data.closing)
                 setVolBRL(data.volume)
             })
+
+        setCurrencyName(coins[`${currency}`])
     }
 
     return(
@@ -101,7 +105,8 @@ export default function CurrencyProvider({children}) {
             sell,
             closing,
             volBRL,
-            search
+            search,
+            currencyName
         }}>
             {children}
         </CurrencyContext.Provider>

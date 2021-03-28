@@ -1,13 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
+
+import coinLogo from '../images/coins/btc.svg'
 
 import up_arrow from '../images/up_arrow.svg'
 import down_arrow from '../images/down_arrow.svg'
 import price_tag from '../images/price_tag.svg'
 import price_up from '../images/price_up.svg'
 import price_down from '../images/price_down.svg'
-import bitcoin_logo from '../images/bitcoin_logo.svg'
 import styles from '../styles/components/InfoCard24h.module.css'
 
 export default function InfoCard24h(){
@@ -17,14 +18,20 @@ export default function InfoCard24h(){
         low,
         last,
         buy,
-        sell
+        sell,
+        currencyName
     } = useContext(CurrencyContext)
 
     return(
         <div id='infocard24h' className={styles.infoCard24hContainer}>
             <header className={styles.header}>
-                <div>
-                    <img src={bitcoin_logo} alt='bitcoin logo'></img>
+                <div className={styles.logoContainer}>
+                    <span>
+                        <img src={coinLogo} alt='coin logo'></img>
+                    </span>
+                    <span>
+                        {currencyName}
+                    </span>
                 </div>
                 <div>Nas ultimas 24h</div>
             </header>
@@ -87,7 +94,7 @@ export default function InfoCard24h(){
 
             </div>
         </div>
-    );
-};
+    )
+}
 
 
