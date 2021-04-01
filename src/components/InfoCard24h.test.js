@@ -2,16 +2,16 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import CurrencyProvider from '../contexts/CurrencyContext'
+import InfoCard24h from './InfoCard24h';
 
-import InfoCard from './InfoCard';
-
-describe('<InfoCard /> tests', () => {
+describe('<InfoCard24h /> tests', () => {
     it('renders without crashing', () => {
         render(
             <CurrencyProvider>
-                <InfoCard />
+                <InfoCard24h />
             </CurrencyProvider>
         )
-    })
+    });
 })
+
 
