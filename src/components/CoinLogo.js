@@ -1,8 +1,10 @@
 import React from 'react'
 
 import styles from '../styles/components/CoinLogo.module.css'
+import { configs } from '../configs'
 
 import coinLogo from '../images/coin/btc.svg'
+
 export default function CoinLogo(props) {
 
     return(
@@ -11,7 +13,7 @@ export default function CoinLogo(props) {
                 <img src={coinLogo} alt='coin logo'></img>
             </span>
             <span>
-                {props.currencyName}
+                {configs.currencies[props.currency]}
             </span>
         </div>
     )
