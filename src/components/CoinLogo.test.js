@@ -1,11 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
+import CurrencyProvider from '../contexts/CurrencyContext'
 import CoinLogo from './CoinLogo';
 
 describe('<CoinLogo /> tests', () => {
     it('renders without crashing', () => {
-        render(<CoinLogo />)
+        render(
+          <CurrencyProvider>
+            <CoinLogo />
+          </CurrencyProvider>
+        )
     });
 })
 
