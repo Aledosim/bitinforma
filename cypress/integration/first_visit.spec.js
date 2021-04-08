@@ -18,8 +18,9 @@ it('Gus first impressions', () => {
   // He notes the two cards and the background as well
   cy.dataCy('infocard')
     .should('be.visible')
-    .within(($infocard) => {
+    .within(() => {
 
+      // The coin logo and name are ok
       cy.get('header img')
         .should('be.visible')
 

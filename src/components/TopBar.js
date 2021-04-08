@@ -21,11 +21,13 @@ export default function TopBar(){
       </div>
       <div className={styles.searchFieldContainer}>
         <input
+          data-cy='searchField'
           id='searchField'
           type='text'
           placeholder='Buscar por uma moeda'
         />
         <img
+          data-cy='searchButton'
           src={search_icon}
           alt='search button'
           onClick={search(setCurrency)}

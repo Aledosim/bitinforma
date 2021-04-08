@@ -12,7 +12,7 @@ export function CoinLogo() {
   } = useContext(CurrencyContext)
 
   return(
-    <div className={styles.logoContainer}>
+    <div data-cy='coinlogo' className={styles.logoContainer}>
       <span>
         <img src={coinLogo} alt='coin logo'></img>
       </span>
