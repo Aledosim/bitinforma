@@ -7,20 +7,20 @@ import back_down from '../images/back_down.svg'
 
 export default function Background() {
 
-    return(
-        <div className={styles.backgroundContainer}>
-            <div>
-                <img
-                    src={back_up}
-                    alt='backgroud'
-                />
-            </div>
-            <div>
-                <img
-                    src={back_down}
-                    alt='backgroud'
-                />
-            </div>
-        </div>
-    )
+  return(
+    <div data-cy='background' className={styles.backgroundContainer}>
+      <div>
+        <img
+          src={back_up}
+          alt="background"
+        />
+      </div>
+      <div>
+        <img
+          src={back_down}
+          alt="background"
+        />
+      </div>
+    </div>
+  )
 }

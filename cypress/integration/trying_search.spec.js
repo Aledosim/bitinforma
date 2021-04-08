@@ -1,40 +1,52 @@
 it('Gus wants to search for other cryptocoins', () => {
-    cy.intercept(/mercadobitcoin/).as('mercado_request')
+  cy.intercept(/www.mercadobitcoin.net/).as('requests')
 
-    // Gus already knows BitInforma, so he came back for more info
-    cy.visit('/')
+  // Gus already knows BitInforma, so he came back for more info
+  cy.visit('/')
 
-    cy.wait('@mercado_request').should(() => {
+  cy.wait(['@requests', '@requests'])
 
-        // He notes the price of bitcoin
-        cy.get('#price').then(($div) => {
+  // He notes the price of bitcoin
+  cy.dataCy('price').then(($priceDiv) => {
 
-            const firstPrice = $div.text()
+    const firstPrice = $priceDiv.text()
 
-            // Imediately he tries writing some search term
-            cy.get('#topbar').get('#searchField').type('ETH')
-                .then(() => {
+    // Imediately he tries writing some search term
+    cy.dataCy('searchField')
+      .type('ETH')
 
-                    // ...and hit the search button
-                    cy.get('#topbar').get('#searchField').click()
+    // ...and hit the search button
+    cy.dataCy('searchButton')
+      .click()
 
-                })
-                .wait('@mercado_request').should(() => {
+    cy.wait(['@requests', '@requests'])
 
-                    // Gus now sees the difference in prices
-                    cy.get('#price').its('text').should('not.be.equal', firstPrice)
+    // Gus now sees the difference in prices
+    cy.dataCy('price')
+      .invoke('text')
+      .should('not.be.equal', firstPrice)
+    // (which is formated accordingly)
+      .should('to.match', /^R\$\s\d+\.\d{3}$/)
 
-                    // And the price is formated accordingly
-                    cy.get('#price').should(($div) => {
-                        const text = $div.text()
-
-                        expect(text).to.match(/^R\$\s\d+\.\d{3}$/)
-                    })
-
-            })
-
-        })
-
+    // and in the currency name
+    cy.dataCy('coinlogo').first().within(() => {
+      cy.get('span:last-of-type')
+        .invoke('text')
+        .should('be.equal', 'Ethereum')
     })
+
+  })
+
+  // Just for fun Gus try to search a invalid term
+  cy.dataCy('searchField')
+    .type('bitcoin sucks')
+
+  cy.dataCy('searchButton')
+    .click()
+
+  // He sees the message of error
+  cy.dataCy('searchField')
+    .invoke('attr', 'placeholder')
+    .should('be.equal', 'Termo inválido')
 })
 

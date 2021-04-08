@@ -1,10 +1,60 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react';
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
-import coinLogo from '../images/coins/btc.svg'
-
+import { CoinLogo } from './CoinLogo'
 import styles from '../styles/components/InfoCard.module.css'
+
+export function volHandler (setVolOut) {
+
+  const volHandlerInner = rawVol => {
+    rawVol = Math.trunc(rawVol * 100) / 100
+
+    var volInt
+    var volDecimal
+    [ volInt, volDecimal ] = String(rawVol).split('.')
+
+    if (typeof(volDecimal) == 'undefined') {
+      volDecimal = '0'
+    }
+    setVolOut(volInt + ',' + volDecimal.padEnd(2, '0'))
+  }
+
+  return volHandlerInner
+}
+
+export function closingHandler (setClosingOut) {
+
+  const closingHandlerInner = rawClosing => {
+    rawClosing = Math.round(rawClosing) / 1000
+
+    var closingInt
+    var closingDecimal
+    [ closingInt, closingDecimal ] = String(rawClosing).split('.')
+
+    if (typeof(closingDecimal) == 'undefined') {
+      closingDecimal = '0'
+    }
+
+    setClosingOut(closingInt + '.' + closingDecimal.padEnd(3, '0'))
+  }
+
+  return closingHandlerInner
+}
+
+export function volBRLHandler (setVolBRLOut) {
+
+  const volBRLHandlerInner = rawVol => {
+    const vol = rawVol.toLocaleString('pt-br', {
+      style: 'currency',
+      currency: 'BRL',
+      minimumFractionDigits: 2
+    })
+    setVolBRLOut(vol)
+  }
+
+  return volBRLHandlerInner
+}
 
 export default function InfoCard() {
 
@@ -12,65 +62,30 @@ export default function InfoCard() {
         vol,
         closing,
         volBRL,
-        currencyName
     } = useContext(CurrencyContext)
 
     const [volOut, setVolOut] = useState()
     const [closingOut, setClosingOut] = useState()
     const [volBRLOut, setVolBRLOut] = useState()
 
-    useEffect(() => volHandler(vol), [vol])
-    useEffect(() => closingHandler(closing), [closing])
-    useEffect(() => volBRLHandler(volBRL), [volBRL])
-
-    function volHandler(rawVol) {
-        rawVol = Math.trunc(rawVol * 100) / 100
-
-        var volInt
-        var volDecimal
-        [ volInt, volDecimal ] = String(rawVol).split('.')
-
-        if (typeof(volDecimal) == 'undefined') {
-            volDecimal = '0'
-        }
-        setVolOut(volInt + ',' + volDecimal.padEnd(2, '0'))
-    }
-
-    function closingHandler(rawClosing) {
-        rawClosing = Math.round(rawClosing) / 1000
-
-        var closingInt
-        var closingDecimal
-        [ closingInt, closingDecimal ] = String(rawClosing).split('.')
-
-        if (typeof(closingDecimal) == 'undefined') {
-            closingDecimal = '0'
-        }
-
-        setClosingOut(closingInt + '.' + closingDecimal.padEnd(3, '0'))
-    }
-
-    function volBRLHandler(rawVol) {
-        const vol = rawVol.toLocaleString('pt-br', {
-            style: 'currency',
-            currency: 'BRL',
-            minimumFractionDigits: 2
-        })
-        setVolBRLOut(vol)
-    }
+    useEffect(() => {
+      const effect = volHandler(setVolOut)
+      effect(vol)
+    })
+    useEffect(() => {
+      const effect = closingHandler(setClosingOut)
+      effect(closing)
+    }, [closing])
+    useEffect(()=> {
+      const effect = volBRLHandler(setVolBRLOut)
+      effect(volBRL)
+    }, [volBRL])
 
     return(
-        <div id='infocard' className={styles.infoCardContainer}>
+        <div data-cy='infocard' className={styles.infoCardContainer}>
             <header className={styles.header}>
-                <div className={styles.logoContainer}>
-                    <span>
-                        <img src={coinLogo} alt='coin logo'></img>
-                    </span>
-                    <span>
-                        {currencyName}
-                    </span>
-                </div>
-                <div id='price' className={styles.price}>
+                <CoinLogo />
+                <div data-cy='price' className={styles.price}>
                     R$ {closingOut}
                 </div>
             </header>
@@ -86,6 +101,6 @@ export default function InfoCard() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 

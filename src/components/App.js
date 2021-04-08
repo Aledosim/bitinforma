@@ -1,13 +1,13 @@
 import React from 'react'
 
-import TopBar from '../components/TopBar'
-import InfoCard from '../components/InfoCard'
-import InfoCard24h from '../components/InfoCard24h'
-import Background from '../components/Background'
+import TopBar from './TopBar';
+import InfoCard from './InfoCard';
+import InfoCard24h from './InfoCard24h';
+import Background from './Background'
 
 import CurrencyProvider from '../contexts/CurrencyContext'
 
-import styles from '../styles/components/App.module.css'
+import styles from '../styles/components/App.module.css';
 
 function App(pageProps) {
 
@@ -21,12 +21,12 @@ function App(pageProps) {
                 <Background />
             </div>
             <div className={styles.cardsContainer}>
-                <InfoCard />
-                <InfoCard24h />
+              <InfoCard />
+              <InfoCard24h />
             </div>
           </div>
         </CurrencyProvider>
-    )
+    );
   }
 
 export default App;

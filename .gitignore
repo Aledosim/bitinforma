@@ -7,8 +7,10 @@
 /README.md
 
 # Cypress
+cypress.env.json
 /cypress/fixtures/example.json
 /cypress/integration/examples/
+/cypress/screenshots
 /cypress/videos
 
 # testing

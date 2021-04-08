@@ -32,35 +32,6 @@
     border-bottom: 1px solid #C4C4C4;
 }
 
-.logoContainer:first-of-type {
-    display: flex;
-    align-items: center;
-}
-
-@media(max-width: 1050px) {
-    .logoContainer > span:first-of-type > img {
-        width: 24px;
-        height: 24px;
-    }
-}
-
-/* Coin name */
-.logoContainer > span:last-of-type {
-    color: var(--black);
-    font-size: 24px;
-    font-weight: 700;
-    line-height: 30px;
-    margin-bottom: 6px;
-    margin-left: 12px;
-}
-
-@media(max-width: 1050px) {
-.logoContainer > span:last-of-type {
-    font-size: 14px;
-    line-height: 21px;
-   }
-}
-
 /* Header text */
 .header > div:last-child {
     align-self: flex-end;
@@ -69,7 +40,6 @@
     line-height: 24px;
     color: var(--black);
 }
-
 
 @media(max-width: 1050px) {
 	.header > div:last-child {
