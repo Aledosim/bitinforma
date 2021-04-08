@@ -4,21 +4,53 @@
     padding: 2rem 2rem 2.5rem 1.9rem;
 
     border: 1px solid #767272;
-    box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 
-    max-width: 340px;
-    max-height: 362px;
-    min-width: 244px;
-    min-height: 260px;
+    min-width: 340px;
+    min-height: 362px;
 
     background-color: var(--white);
+}
+
+@media(max-width: 1050px) {
+    .infoCardContainer {
+		min-height: 300px;
+    }
 }
 
 .header {
     margin-bottom: 1.9rem;
     border-bottom: 1px solid #C4C4C4;
+}
+
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+@media(max-width: 1050px) {
+    .logoContainer > span:first-of-type > img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Coin name */
+.logoContainer > span:last-of-type {
+    color: var(--black);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 6px;
+    margin-left: 12px;
+}
+
+@media(max-width: 1050px) {
+.logoContainer > span:last-of-type {
+    font-size: 14px;
+    line-height: 21px;
+   }
 }
 
 .price {
@@ -28,13 +60,38 @@
     font-size: 24px;
 }
 
+@media(max-width: 1050px) {
+    .price {
+		font-size: 17.1943px;
+		line-height: 26px;
+   }
+}
+
+/* Content text */
 .infoCardContainer > div > p {
     font-size: 18px;
 }
 
+
+@media(max-width: 1050px) {
+	.infoCardContainer > div > p {
+		font-size: 12.8957px;
+		line-height: 19px;
+    }
+}
+
+/* Bottom blue text and arrow */
 .infoCardContainer > div > div {
     font-size: 18px;
     text-align: right;
     margin-top: 2rem;
     color: var(--blue);
+}
+
+
+@media(max-width: 1050px) {
+    .infoCardContainer > div > div {
+        font-size: 12.8957px;
+        line-height: 19px;
+    }
 }

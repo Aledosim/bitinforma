@@ -30,6 +30,13 @@
 body {
     background: var(--background);
     color: var(--text);
+    overflow: hidden;
+}
+
+@media(max-width: 1050px) {
+    body {
+        overflow: visible;
+        }
 }
 
 body, input, textarea, input {

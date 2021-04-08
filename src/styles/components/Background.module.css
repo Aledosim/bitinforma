@@ -5,6 +5,24 @@
 
     z-index: -1;
     transform: translateY(-0.5rem);
-    overflow: hidden;
 }
 
+@media(max-width: 1050px) {
+    .backgroundContainer {
+        min-height: 896px;
+    }
+}
+
+@media(max-width: 1050px) {
+    .backgroundContainer > div:first-of-type > img {
+		width: 274px;
+		height: 143.71px;
+    }
+}
+
+@media(max-width: 1050px) {
+    .backgroundContainer > div:last-of-type > img {
+		width: 414px;
+		height: 299.73px;
+    }
+}
