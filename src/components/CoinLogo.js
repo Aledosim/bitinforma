@@ -6,7 +6,7 @@ import { configs } from '../configs'
 
 import coinLogo from '../images/coin/btc.svg'
 
-export default function CoinLogo() {
+export function CoinLogo() {
   const {
     currency
   } = useContext(CurrencyContext)

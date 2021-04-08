@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
-import CoinLogo from './CoinLogo'
+import { CoinLogo } from './CoinLogo'
 import styles from '../styles/components/InfoCard.module.css'
 
 export function volHandler (setVolOut) {
