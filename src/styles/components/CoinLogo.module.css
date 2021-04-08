@@ -1,0 +1,28 @@
+.logoContainer {
+    display: flex;
+    align-items: center;
+}
+
+@media(max-width: 1050px) {
+    .logoContainer > span:first-of-type > img {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Coin name */
+.logoContainer > span:last-of-type {
+    color: var(--black);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+    margin-bottom: 6px;
+    margin-left: 12px;
+}
+
+@media(max-width: 1050px) {
+.logoContainer > span:last-of-type {
+    font-size: 14px;
+    line-height: 21px;
+   }
+}
