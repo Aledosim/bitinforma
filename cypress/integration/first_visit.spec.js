@@ -23,7 +23,7 @@ it('Gus first impressions', () => {
       cy.get('header img')
         .should('be.visible')
 
-      cy.get('header > span:last-of-type')
+      cy.get('header span:last-of-type')
         .should('contain', 'Bitcoin')
     })
 
