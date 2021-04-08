@@ -1,4 +1,5 @@
 it('Gus first impressions', () => {
+  cy.intercept(/www.mercadobitcoin.net/).as('requests')
 
   // Gus wants to know about bitcoin and visits BitInforma home page
   cy.visit('/')
@@ -18,20 +19,29 @@ it('Gus first impressions', () => {
   // He notes the two cards and the background as well
   cy.dataCy('infocard')
     .should('be.visible')
-    .within(() => {
-
-      // The coin logo and name are ok
-      cy.get('header img')
-        .should('be.visible')
-
-      cy.get('header span:last-of-type')
-        .should('contain', 'Bitcoin')
-    })
 
   cy.dataCy('infocard24h')
     .should('be.visible')
 
   cy.dataCy('background')
     .should('be.visible')
+
+  // The coin logo and name are ok
+  cy.dataCy('coinlogo')
+    .should('be.visible')
+    .within(() => {
+
+      cy.get('span:first-of-type')
+        .should('be.visible')
+
+      cy.get('span:last-of-type')
+        .should('contain', 'Bitcoin')
+    })
+
+  // and the price is formated accordingly
+  cy.wait(['@requests', '@requests'])
+  cy.dataCy('price')
+    .invoke('text')
+    .should('to.match', /^R\$\s\d+\.\d{3}$/)
 })
 

@@ -1,10 +1,8 @@
 TODO
 
- - fazer o layout para iphone
- - mudar o nome da criptomoeda depois da pesquisa
- - corrigir icone e título dos cards depois de uma pesquisa
- - arrumar imports
- - refactor dos testes
+ - corrigir o layout para iphone
+ - mudar ícone da criptomoeda depois de uma pesquisa
+ - corrigir seta azul
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
  - pesquisar com enter

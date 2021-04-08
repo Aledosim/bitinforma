@@ -1,9 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import React from 'react'
+import { render, screen } from '@testing-library/react'
 
 import CurrencyProvider from '../contexts/CurrencyContext'
 
-import InfoCard, { volHandler, closingHandler, volBRLHandler } from './InfoCard';
+import InfoCard, { volHandler, closingHandler, volBRLHandler } from './InfoCard'
 
 describe('volHandler tests', () => {
   it('should return a function', () => {
@@ -75,12 +75,12 @@ describe('volBRLHandler tests', () => {
 });
 
 describe('<InfoCard /> tests', () => {
-    it('renders without crashing', () => {
-        render(
-            <CurrencyProvider>
-                <InfoCard />
-            </CurrencyProvider>
-        )
-    })
+  it('renders without crashing', () => {
+    render(
+      <CurrencyProvider>
+        <InfoCard />
+      </CurrencyProvider>
+    )
+  })
 })
 

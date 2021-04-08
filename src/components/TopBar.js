@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
+import { search } from '../functions/functions'
+import styles from '../styles/components/TopBar.module.css'
+
 import logo from "../images/logo.svg"
 import search_icon from '../images/search_icon.svg'
-
-import styles from '../styles/components/TopBar.module.css'
-import { search } from '../functions/functions'
 
 export default function TopBar(){
 

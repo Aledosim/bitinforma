@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext } from 'react'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
+
 import { CoinLogo } from './CoinLogo'
+
+import styles from '../styles/components/InfoCard24h.module.css'
 
 import up_arrow from '../images/up_arrow.svg'
 import down_arrow from '../images/down_arrow.svg'
 import price_tag from '../images/price_tag.svg'
 import price_up from '../images/price_up.svg'
 import price_down from '../images/price_down.svg'
-import styles from '../styles/components/InfoCard24h.module.css'
 
 export default function InfoCard24h(){
 

@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
+
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
-import styles from '../styles/components/CoinLogo.module.css'
 import { configs } from '../configs'
+import styles from '../styles/components/CoinLogo.module.css'
 
-import coinLogo from '../images/coin/btc.svg'
+import coinLogo from '../images/coins/btc.svg'
 
 export function CoinLogo() {
   const {

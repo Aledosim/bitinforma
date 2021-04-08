@@ -25,8 +25,6 @@ it('Gus wants to search for other cryptocoins', () => {
     cy.dataCy('price')
       .invoke('text')
       .should('not.be.equal', firstPrice)
-    // (which is formated accordingly)
-      .should('to.match', /^R\$\s\d+\.\d{3}$/)
 
     // and in the currency name
     cy.dataCy('coinlogo').first().within(() => {
