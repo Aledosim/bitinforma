@@ -56,6 +56,7 @@ export default function CurrencyProvider({children}) {
             sell,
             closing,
             volBRL,
+            currency,
             setCurrency
         }}>
             {children}
