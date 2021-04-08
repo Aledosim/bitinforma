@@ -3,9 +3,6 @@
 # dependencies
 /node_modules
 
-# React
-/README.md
-
 # Cypress
 cypress.env.json
 /cypress/fixtures/example.json
