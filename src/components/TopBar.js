@@ -2,11 +2,28 @@ import React, { useContext } from 'react'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
-import { search } from '../functions/functions'
+import { configs } from '../configs'
 import styles from '../styles/components/TopBar.module.css'
 
 import logo from "../images/logo.svg"
 import search_icon from '../images/search_icon.svg'
+
+export function search(setCurrency) {
+  const searchInner = () => {
+    const searchField  = document.getElementById('searchField')
+    const text = searchField.value.toLowerCase()
+
+    if (Object.keys(configs.currencies).includes(text)) {
+      setCurrency(text)
+      searchField.value = ''
+    } else {
+      searchField.value = ''
+      searchField.placeholder = 'Termo inválido'
+    }
+  }
+
+  return searchInner
+}
 
 export default function TopBar(){
 
