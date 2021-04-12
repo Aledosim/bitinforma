@@ -2,6 +2,10 @@ TODO
 
  - corrigir o layout para iphone
  - mudar ícone da criptomoeda depois de uma pesquisa
+ - testes de unidade dos components devem testar a renderização dos elementos
+ - testar se chama search quando clica no botão de busca
+ - testar formato da moeda no teste de unidade
+ - testar os dois CoinLogo no tryinh_search
  - corrigir seta azul
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
