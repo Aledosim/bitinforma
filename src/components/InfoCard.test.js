@@ -14,62 +14,50 @@ describe('volHandler tests', () => {
     expect(typeof func).toEqual('function')
   });
 
-  it('should call setVolOut with the correct value', () => {
-    const setVolOut = jest.fn()
+  it('should return the formated sting', () => {
+    const func = volHandler()
+    const result = func('159.91613864')
 
-    const func = volHandler(setVolOut)
-    func('159.91613864')
-
-    expect(setVolOut).toHaveBeenCalledWith("159,91")
+    expect(result).toEqual("159,91")
   });
 
 });
 
 describe('closingHandler tests', () => {
   it('should return a function', () => {
-    const setClosingOut = jest.fn()
-
-    const func = closingHandler(setClosingOut)
+    const func = closingHandler()
 
     expect(typeof func).toEqual('function')
   });
 
-  it('should call setClosingOut with the correct value', () => {
-    const setClosingOut = jest.fn()
+  it('should return the sting formated value', () => {
+    const func = closingHandler()
+    const result = func('326900.00666999')
 
-    const func = closingHandler(setClosingOut)
-    func('326900.00666999')
-
-    expect(setClosingOut).toHaveBeenCalledWith("326.900")
+    expect(result).toEqual("326.900")
   });
 
-  it('should call setClosingOut with the correct value that ends with 0', () => {
-    const setClosingOut = jest.fn()
+  it('should return the correct value if the input ends with 0', () => {
+    const func = closingHandler()
+    const result = func('326000.00666999')
 
-    const func = closingHandler(setClosingOut)
-    func('326000.00666999')
-
-    expect(setClosingOut).toHaveBeenCalledWith("326.000")
+    expect(result).toEqual("326.000")
   });
 
 });
 
 describe('volBRLHandler tests', () => {
   it('should return a function', () => {
-    const setVolBRLOut = jest.fn()
-
-    const func = volBRLHandler(setVolBRLOut)
+    const func = volBRLHandler()
 
     expect(typeof func).toEqual('function')
   });
 
-  it('should call setVolBRLOut with the correct value', () => {
-    const setVolBRLOut = jest.fn()
+  it('should return the string formated value', () => {
+    const func = volBRLHandler()
+    const result = func(41198719.10154287)
 
-    const func = volBRLHandler(setVolBRLOut)
-    func(41198719.10154287)
-
-    expect(setVolBRLOut).toHaveBeenCalledWith("R$ 41.198.719,10")
+    expect(result).toEqual("R$ 41.198.719,10")
   });
 
 });

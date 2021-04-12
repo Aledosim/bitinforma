@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 
 import { CurrencyContext } from '../contexts/CurrencyContext'
 
@@ -6,7 +6,7 @@ import { CoinLogo } from './CoinLogo'
 
 import styles from '../styles/components/InfoCard.module.css'
 
-export function volHandler (setVolOut) {
+export function volHandler () {
 
   const volHandlerInner = rawVol => {
     rawVol = Math.trunc(rawVol * 100) / 100
@@ -18,13 +18,13 @@ export function volHandler (setVolOut) {
     if (typeof(volDecimal) == 'undefined') {
       volDecimal = '0'
     }
-    setVolOut(volInt + ',' + volDecimal.padEnd(2, '0'))
+    return volInt + ',' + volDecimal.padEnd(2, '0')
   }
 
   return volHandlerInner
 }
 
-export function closingHandler (setClosingOut) {
+export function closingHandler () {
 
   const closingHandlerInner = rawClosing => {
     rawClosing = Math.round(rawClosing) / 1000
@@ -37,13 +37,13 @@ export function closingHandler (setClosingOut) {
       closingDecimal = '0'
     }
 
-    setClosingOut(closingInt + '.' + closingDecimal.padEnd(3, '0'))
+    return closingInt + '.' + closingDecimal.padEnd(3, '0')
   }
 
   return closingHandlerInner
 }
 
-export function volBRLHandler (setVolBRLOut) {
+export function volBRLHandler () {
 
   const volBRLHandlerInner = rawVol => {
     const vol = rawVol.toLocaleString('pt-br', {
@@ -51,7 +51,7 @@ export function volBRLHandler (setVolBRLOut) {
       currency: 'BRL',
       minimumFractionDigits: 2
     })
-    setVolBRLOut(vol)
+    return vol
   }
 
   return volBRLHandlerInner
@@ -65,37 +65,20 @@ export default function InfoCard() {
     volBRL,
   } = useContext(CurrencyContext)
 
-  const [volOut, setVolOut] = useState()
-  const [closingOut, setClosingOut] = useState()
-  const [volBRLOut, setVolBRLOut] = useState()
-
-  useEffect(() => {
-    const effect = volHandler(setVolOut)
-    effect(vol)
-  })
-  useEffect(() => {
-    const effect = closingHandler(setClosingOut)
-    effect(closing)
-  }, [closing])
-  useEffect(()=> {
-    const effect = volBRLHandler(setVolBRLOut)
-    effect(volBRL)
-  }, [volBRL])
-
   return(
     <div data-cy='infocard' className={styles.infoCardContainer}>
       <header className={styles.header}>
         <CoinLogo />
         <div data-cy='price' className={styles.price}>
-          R$ {closingOut}
+          R$ {closingHandler()(closing)}
         </div>
       </header>
       <div>
         <p id='volume'>
-          {volOut} bitcoins negociados nas últimas 24hs
+          {volHandler()(vol)} bitcoins negociados nas últimas 24hs
         </p>
         <p id='total'>
-          Um total de {volBRLOut}
+          Um total de {volBRLHandler()(volBRL)}
         </p>
         <div>
           <a href='https://www.mercadobitcoin.com.br/negociacoes'>Veja mais -></a>
