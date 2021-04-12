@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 
-import CurrencyProvider from '../contexts/CurrencyContext'
+import CurrencyProvider from '../../contexts/CurrencyContext'
 
-import InfoCard, { volHandler, closingHandler, volBRLHandler } from './InfoCard'
+import InfoCard, { volHandler, closingHandler, volBRLHandler } from '../../components/InfoCard'
 
 describe('volHandler tests', () => {
   it('should return a function', () => {

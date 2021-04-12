@@ -1,9 +1,9 @@
 import React from 'react'
 import { render, screen } from '@testing-library/react'
 
-import CurrencyProvider from '../contexts/CurrencyContext'
+import CurrencyProvider from '../../contexts/CurrencyContext'
 
-import TopBar, { search } from './TopBar'
+import TopBar, { search } from '../../components/TopBar'
 
 function renderTopBar () {
   return render(
