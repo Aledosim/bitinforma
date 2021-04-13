@@ -1,17 +1,9 @@
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
 import TopBar, { search } from '../../components/TopBar'
-
-function renderTopBar () {
-  return render(
-    <CurrencyProvider>
-      <TopBar />
-    </CurrencyProvider>
-  )
-}
 
 describe('search tests', () => {
 
@@ -72,6 +64,22 @@ describe('search tests', () => {
 
 describe('<TopBar /> tests', () => {
   it('renders without crashing', () => {
-    renderTopBar()
+
+    render(
+      <CurrencyProvider>
+        <TopBar />
+      </CurrencyProvider>
+    )
+
+    const logo = screen.getByAltText('logo')
+    expect(logo.hasAttribute('src')).toBe(true)
+
+    const searchField = screen.getByPlaceholderText('Buscar por uma moeda')
+    expect(searchField.getAttribute('id')).toBe('searchField')
+    expect(searchField.getAttribute('type')).toBe('text')
+
+    const searchButton = screen.getByAltText('search button')
+    expect(searchButton.hasAttribute('src')).toBe(true)
+
   })
 })
