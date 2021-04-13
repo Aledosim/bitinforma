@@ -24,16 +24,15 @@ describe('search tests', () => {
   })
 
   it('search for lowercase only', () => {
-    HTMLInputElement.value = 'eth'
+    HTMLInputElement.value = 'ETH'
     document.getElementById = jest.fn(() => HTMLInputElement)
-    const spy = jest.spyOn(String.prototype, 'toLowerCase')
+    const setCurrency = jest.fn()
 
-    const func = search(jest.fn())
+    const func = search(setCurrency)
     func()
 
-    expect(String.prototype.toLowerCase).toHaveBeenCalledTimes(1)
+    expect(setCurrency).toHaveBeenCalledWith('eth')
 
-    spy.mockRestore()
   })
 
   it('calls setCurrency for a valid value and reset searchField', () => {
@@ -48,7 +47,7 @@ describe('search tests', () => {
     expect(HTMLInputElement.value).toEqual('')
   })
 
-  it('wont call setCurrency for a invalid value and show a mesage', () => {
+  it('wont call setCurrency for a invalid value and show a message', () => {
     const setCurrency = jest.fn()
     HTMLInputElement.value = 'invalid'
     document.getElementById = jest.fn(() => HTMLInputElement)
