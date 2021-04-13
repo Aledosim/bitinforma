@@ -7,6 +7,8 @@ TODO
  - testar formato da moeda no teste de unidade
  - testar os dois CoinLogo no tryinh_search
  - corrigir seta azul
+ - mudar a tag img do logo na TopBar
+ - mockar search para teste de unidade do TopBar
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
  - pesquisar com enter
