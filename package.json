@@ -9,7 +9,8 @@
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.5",
-    "cypress": "^6.8.0"
+    "cypress": "^6.8.0",
+    "jest-fetch-mock": "^3.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
