@@ -1,29 +1,22 @@
 import React, { useContext } from 'react'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { enableFetchMocks  } from 'jest-fetch-mock'
 
 enableFetchMocks()
 
 import CurrencyProvider, { CurrencyContext } from '../../contexts/CurrencyContext'
 
-export default function MockComponent() {
+function DefaultMockComponent() {
 
-  const {
-    high,
-    low,
-    vol,
-    last,
-    buy,
-    sell,
-    closing,
-    volBRL,
-    currency,
-    setCurrency
-  } = useContext(CurrencyContext)
-
+  const values = useContext(CurrencyContext)
+  const valuesItems = Object.keys(values).map(value => {
+    return <div key={value}>{value}</div>
+  })
 
   return(
-    <div id=''></div>
+    <>
+      {valuesItems}
+    </>
   )
 }
 
@@ -59,24 +52,59 @@ describe('CurrencyContext', () => {
 
   it('should make correct http request', () => {
 
+    // Need to configure the response to avoid unwanted errors
     fetch
-      .once(JSON.stringify(tickerResponse))
-      .once(JSON.stringify(summaryResponse))
+      .mockResponse(req => {
+        if (/.*\/ticker\/.*/.test(req.url)) {
+          return new Promise(() => ({ body: JSON.stringify(tickerResponse) }))
+
+        } else if (/.*\/day-summary\/.*/.test(req.url)) {
+          return new Promise(() => ({ body: JSON.stringify(summaryResponse) }))
+
+        }
+      })
 
     const date = new Date(2021, 3, 7)
     const spyDate = jest.spyOn(global, 'Date').mockImplementation(() => date)
 
     render(
       <CurrencyProvider>
-        <MockComponent />
+        <DefaultMockComponent />
       </CurrencyProvider>
     )
 
     expect(fetch).toHaveBeenCalledTimes(2)
-    expect(fetch).toHaveBeenNthCalledWith(1, 'https://www.mercadobitcoin.net/api/btc/ticker/')
-    expect(fetch).toHaveBeenNthCalledWith(2,'https://www.mercadobitcoin.net/api/btc/day-summary/2021/4/6/')
+    expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/ticker/')
+    expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/day-summary/2021/4/6/')
 
     spyDate.mockRestore()
   });
 
+  it('should pass the correct values', () => {
+
+    fetch
+      .mockResponse(req => {
+        if (/.*\/ticker\/.*/.test(req.url)) {
+          return new Promise(() => ({ body: JSON.stringify(tickerResponse) }))
+
+        } else if (/.*\/day-summary\/.*/.test(req.url)) {
+          return new Promise(() => ({ body: JSON.stringify(summaryResponse) }))
+
+        }
+      })
+
+    const date = new Date(2021, 3, 7)
+    const spyDate = jest.spyOn(global, 'Date').mockImplementation(() => date)
+
+    render(
+      <CurrencyProvider>
+        <DefaultMockComponent />
+      </CurrencyProvider>
+    )
+
+    console.log(screen.getByText('high'))
+    expect(screen.getByText('high').innerText).toBe('high')
+
+    spyDate.mockRestore()
+  });
 });
