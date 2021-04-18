@@ -9,7 +9,6 @@ TODO
  - corrigir seta azul
  - mudar a tag img do logo na TopBar
  - mockar search para teste de unidade do TopBar
- - fazer DefaultMockComponent renderizar os valores corretos no unit test do CurrencyContext
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
  - pesquisar com enter

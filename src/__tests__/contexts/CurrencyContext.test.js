@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { render, screen, waitFor } from '@testing-library/react'
 import { enableFetchMocks  } from 'jest-fetch-mock'
 
 enableFetchMocks()
+import React, { useContext } from 'react'
+import { render, screen, waitFor } from '@testing-library/react'
 
 import CurrencyProvider, { CurrencyContext } from '../../contexts/CurrencyContext'
 
@@ -60,10 +60,10 @@ describe('CurrencyContext', () => {
     fetch
       .mockResponse(req => {
         if (/.*\/ticker\/.*/.test(req.url)) {
-          return new Promise(() => ({ body: JSON.stringify(tickerResponse) }))
+          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
 
         } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return new Promise(() => ({ body: JSON.stringify(summaryResponse) }))
+          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
 
         }
       })
@@ -79,23 +79,24 @@ describe('CurrencyContext', () => {
 
     // screen.debug()
 
-    expect(fetch).toHaveBeenCalledTimes(2)
-    expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/ticker/')
-    expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/day-summary/2021/4/6/')
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledTimes(2)
+      expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/ticker/')
+      expect(fetch).toHaveBeenCalledWith('https://www.mercadobitcoin.net/api/btc/day-summary/2021/4/6/')
+    })
 
     spyDate.mockRestore()
   });
 
-  // This test don't re render with the new data from fetch
-  xit('should pass the correct values', async () => {
+  it('should pass the correct values', async () => {
 
     fetch
       .mockResponse(req => {
         if (/.*\/ticker\/.*/.test(req.url)) {
-          return new Promise(() => ({ body: JSON.stringify(tickerResponse) }))
+          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
 
         } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return new Promise(() => ({ body: JSON.stringify(summaryResponse) }))
+          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
 
         }
       })
@@ -106,14 +107,18 @@ describe('CurrencyContext', () => {
       </CurrencyProvider>
     )
 
-    await waitFor(() => expect(screen.getByTestId('currency').textContent).toBe("btc"))
-    await waitFor(() => expect(screen.getByTestId('volBRL').textContent).toBe(String(summaryResponse.volume)))
-    await waitFor(() => expect(screen.getByTestId('closing').textContent).toBe(String(summaryResponse.closing)))
-    await waitFor(() => expect(screen.getByTestId('sell').textContent).toBe(tickerResponse.ticker.sell))
-    await waitFor(() => expect(screen.getByTestId('buy').textContent).toBe(tickerResponse.ticker.buy))
-    await waitFor(() => expect(screen.getByTestId('last').textContent).toBe(tickerResponse.ticker.last))
-    await waitFor(() => expect(screen.getByTestId('vol').textContent).toBe(tickerResponse.ticker.vol))
-    await waitFor(() => expect(screen.getByTestId('low').textContent).toBe(tickerResponse.ticker.low))
-    await waitFor(() => expect(screen.getByTestId('high').textContent).toBe(tickerResponse.ticker.high))
+    expect(screen.getByTestId('currency').textContent).toBe('btc')
+    expect(screen.getByTestId('setCurrency').textContent).toBe('setCurrency()')
+    await waitFor(() => {
+      expect(screen.getByTestId('volBRL').textContent).toBe(String(summaryResponse.volume))
+      expect(screen.getByTestId('closing').textContent).toBe(String(summaryResponse.closing))
+      expect(screen.getByTestId('sell').textContent).toBe(tickerResponse.ticker.sell)
+      expect(screen.getByTestId('buy').textContent).toBe(tickerResponse.ticker.buy)
+      expect(screen.getByTestId('last').textContent).toBe(tickerResponse.ticker.last)
+      expect(screen.getByTestId('vol').textContent).toBe(tickerResponse.ticker.vol)
+      expect(screen.getByTestId('low').textContent).toBe(tickerResponse.ticker.low)
+      expect(screen.getByTestId('high').textContent).toBe(tickerResponse.ticker.high)
+    })
+
   });
 });
