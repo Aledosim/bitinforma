@@ -34,7 +34,7 @@ describe('closingHandler tests', () => {
     expect(typeof func).toEqual('function')
   });
 
-  it('should return the sting formated value', () => {
+  it('should return the string formated value', () => {
     const func = closingHandler()
     const result = func('326900.00666999')
 

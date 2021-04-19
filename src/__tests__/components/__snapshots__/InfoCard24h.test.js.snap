@@ -45,9 +45,7 @@ Object {
             <span>
               Maior preço negociado:
             </span>
-            <span
-              data-testid="high"
-            >
+            <span>
               380000.00000000
             </span>
           </p>
@@ -152,9 +150,7 @@ Object {
           <span>
             Maior preço negociado:
           </span>
-          <span
-            data-testid="high"
-          >
+          <span>
             380000.00000000
           </span>
         </p>
