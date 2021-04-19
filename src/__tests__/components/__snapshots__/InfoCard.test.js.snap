@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InfoCard /> tests renders without crashing 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="infoCardContainer"
+        data-cy="infocard"
+      >
+        <header
+          class="header"
+        >
+          <div
+            class="logoContainer"
+            data-cy="coinlogo"
+          >
+            <span>
+              <img
+                alt="coin logo"
+                src="btc.svg"
+              />
+            </span>
+            <span>
+              Bitcoin
+            </span>
+          </div>
+          <div
+            class="price"
+            data-cy="price"
+          >
+            R$ 
+            326.900
+          </div>
+        </header>
+        <div>
+          <p
+            id="volume"
+          >
+            259,88
+             bitcoins negociados nas últimas 24hs
+          </p>
+          <p
+            id="total"
+          >
+            Um total de 
+            R$ 41.198.719,10
+          </p>
+          <div>
+            <a
+              href="https://www.mercadobitcoin.com.br/negociacoes"
+            >
+              Veja mais -&gt;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="infoCardContainer"
+      data-cy="infocard"
+    >
+      <header
+        class="header"
+      >
+        <div
+          class="logoContainer"
+          data-cy="coinlogo"
+        >
+          <span>
+            <img
+              alt="coin logo"
+              src="btc.svg"
+            />
+          </span>
+          <span>
+            Bitcoin
+          </span>
+        </div>
+        <div
+          class="price"
+          data-cy="price"
+        >
+          R$ 
+          326.900
+        </div>
+      </header>
+      <div>
+        <p
+          id="volume"
+        >
+          259,88
+           bitcoins negociados nas últimas 24hs
+        </p>
+        <p
+          id="total"
+        >
+          Um total de 
+          R$ 41.198.719,10
+        </p>
+        <div>
+          <a
+            href="https://www.mercadobitcoin.com.br/negociacoes"
+          >
+            Veja mais -&gt;
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
