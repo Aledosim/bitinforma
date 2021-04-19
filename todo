@@ -1,12 +1,13 @@
 TODO
 
- - corrigir o layout para iphone
  - mudar ícone da criptomoeda depois de uma pesquisa
- - testes de unidade dos components devem testar a renderização dos elementos
+ - testes de unidade dos components devem testar a renderização dos elementos (com snapshot)
  - testar se chama search quando clica no botão de busca
  - testar formato da moeda no teste de unidade
  - testar os dois CoinLogo no tryinh_search
+ - corrigir o layout para iphone
  - corrigir seta azul
+ - typo na linha 40 do InfoCard.test.js
  - mudar a tag img do logo na TopBar
  - mockar search para teste de unidade do TopBar
  - lidar com entrada inválida na pesquisa (de forma mais elegante)

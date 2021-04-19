@@ -38,7 +38,7 @@ export default function InfoCard24h(){
           <span>
             Maior preço negociado:
           </span>
-          <span>
+          <span data-testid='high'>
             {high}
           </span>
         </p>
