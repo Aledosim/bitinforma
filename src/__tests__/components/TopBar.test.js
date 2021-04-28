@@ -1,5 +1,5 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
 
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
@@ -63,8 +63,22 @@ describe('search tests', () => {
 
 describe('<TopBar /> tests', () => {
 
-  it('renders without crashing', () => {
+  it('call search when search button is clicked', () => {
+    const mockSearch = jest.fn()
+    TopBar.__Rewire__('search', mockSearch)
+    render(
+      <CurrencyProvider>
+        <TopBar />
+      </CurrencyProvider>
+    )
 
+    fireEvent.click(screen.getByAltText('search button'))
+    expect(mockSearch).toHaveBeenCalled()
+
+    TopBar.__ResetDependency__('search')
+  })
+
+  it('renders without crashing', () => {
     const tree = render(
       <CurrencyProvider>
         <TopBar />
@@ -72,6 +86,7 @@ describe('<TopBar /> tests', () => {
     )
 
     expect(tree).toMatchSnapshot()
-
   })
+
+
 })
