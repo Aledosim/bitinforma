@@ -1,14 +1,12 @@
 TODO
 
  - mudar ícone da criptomoeda depois de uma pesquisa
- - testar se chama search quando clica no botão de busca
  - testar formato da moeda no teste de unidade
  - testar os dois CoinLogo no trying_search
  - corrigir o layout para iphone
  - corrigir seta azul
  - incluir roles
  - mudar a tag img do logo na TopBar
- - mockar search para teste de unidade do TopBar
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
  - pesquisar com enter

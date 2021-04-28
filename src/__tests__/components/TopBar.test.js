@@ -66,6 +66,7 @@ describe('<TopBar /> tests', () => {
   it('call search when search button is clicked', () => {
     const mockSearch = jest.fn()
     TopBar.__Rewire__('search', mockSearch)
+
     render(
       <CurrencyProvider>
         <TopBar />
