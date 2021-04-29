@@ -27,7 +27,7 @@ it('Gus wants to search for other cryptocoins', () => {
       .should('not.be.equal', firstPrice)
 
     // and in the currency name
-    cy.dataCy('coinlogo').first().within(() => {
+    cy.dataCy('coinlogo').within(() => {
       cy.get('span:last-of-type')
         .invoke('text')
         .should('be.equal', 'Ethereum')
