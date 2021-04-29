@@ -69,7 +69,7 @@ export default function InfoCard() {
     <div data-cy='infocard' className={styles.infoCardContainer}>
       <header className={styles.header}>
         <CoinLogo />
-        <div data-cy='price' className={styles.price}>
+        <div data-testid='price' data-cy='price' className={styles.price}>
           R$ {closingHandler()(closing)}
         </div>
       </header>

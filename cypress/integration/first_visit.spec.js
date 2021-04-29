@@ -1,6 +1,4 @@
 it('Gus first impressions', () => {
-  cy.intercept(/www.mercadobitcoin.net/).as('requests')
-
   // Gus wants to know about bitcoin and visits BitInforma home page
   cy.visit('/')
 
@@ -37,11 +35,5 @@ it('Gus first impressions', () => {
       cy.get('span:last-of-type')
         .should('contain', 'Bitcoin')
     })
-
-  // and the price is formated accordingly
-  cy.wait(['@requests', '@requests'])
-  cy.dataCy('price')
-    .invoke('text')
-    .should('to.match', /^R\$\s\d+\.\d{3}$/)
 })
 
