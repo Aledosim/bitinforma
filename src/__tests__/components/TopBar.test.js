@@ -1,9 +1,21 @@
-import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { enableFetchMocks  } from 'jest-fetch-mock'
 
+enableFetchMocks()
+import React from 'react'
+import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
+
+import { tickerResponse, summaryResponse } from '../fixtures.json'
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
 import TopBar, { search } from '../../components/TopBar'
+
+function testRender() {
+    return render(
+      <CurrencyProvider>
+        <TopBar />
+      </CurrencyProvider>
+    )
+}
 
 describe('search tests', () => {
 
@@ -62,31 +74,47 @@ describe('search tests', () => {
 })
 
 describe('<TopBar /> tests', () => {
+  beforeEach(() => {
+    fetch.resetMocks()
 
-  it('call search when search button is clicked', () => {
+    fetch
+      .mockResponse(req => {
+        if (/.*\/ticker\/.*/.test(req.url)) {
+          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
+
+        } else if (/.*\/day-summary\/.*/.test(req.url)) {
+          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
+
+        }
+      })
+  })
+
+  it('call search when search button is clicked', async () => {
     const mockSearch = jest.fn()
     TopBar.__Rewire__('search', mockSearch)
 
-    render(
-      <CurrencyProvider>
-        <TopBar />
-      </CurrencyProvider>
-    )
+    testRender()
 
     fireEvent.click(screen.getByAltText('search button'))
     expect(mockSearch).toHaveBeenCalled()
 
     TopBar.__ResetDependency__('search')
+
+    // Check if the fetch data is rendered
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledTimes(2)
+    })
   })
 
-  it('renders without crashing', () => {
-    const tree = render(
-      <CurrencyProvider>
-        <TopBar />
-      </CurrencyProvider>
-    )
+  it('renders without crashing', async () => {
+    const tree = testRender()
 
     expect(tree).toMatchSnapshot()
+
+    // Check if the fetch data is rendered
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledTimes(2)
+    })
   })
 
 
