@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "babel-plugin-rewire": "^1.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.5",
+    "babel-plugin-rewire": "^1.2.0",
     "customize-cra": "^1.0.0",
     "cypress": "^6.8.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
@@ -17,8 +17,8 @@
     "react-app-rewired": "^2.1.8"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "build": "react-app-rewired build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
     "coverage": "react-app-rewired test /src/__tests__ --coverage",
     "eject": "react-scripts eject"
