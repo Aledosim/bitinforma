@@ -31,10 +31,16 @@ export default function TopBar(){
     setCurrency
   } = useContext(CurrencyContext)
 
+        // <img
+        //   data-cy='searchButton'
+        //   src={search_icon}
+        //   alt='search button'
+        //   onClick={search(setCurrency)}
+        // />
   return(
     <header data-cy='topbar' className={styles.topBar}>
       <div>
-        <img className={styles.logo} src={logo} alt='logo'></img>
+        <img className={styles.logo} src={logo} alt='logo' />
       </div>
       <div className={styles.searchFieldContainer}>
         <input
@@ -43,12 +49,7 @@ export default function TopBar(){
           type='text'
           placeholder='Buscar por uma moeda'
         />
-        <img
-          data-cy='searchButton'
-          src={search_icon}
-          alt='search button'
-          onClick={search(setCurrency)}
-        />
+        <i class="fas fa-search" />
       </div>
     </header>
   );

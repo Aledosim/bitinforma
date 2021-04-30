@@ -1,9 +1,10 @@
 TODO
 
  - mudar ícone da criptomoeda depois de uma pesquisa
- - corrigir o layout para iphone
+ - refactor do search bar
  - corrigir seta azul
  - incluir roles
+ - corrigir o layout para iphone
  - mudar a tag img do logo na TopBar
  - lidar com entrada inválida na pesquisa (de forma mais elegante)
  - fazer um hover na busca
