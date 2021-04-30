@@ -6,10 +6,9 @@ import { configs } from '../configs'
 import styles from '../styles/components/TopBar.module.css'
 
 import logo from "../images/logo.svg"
-import search_icon from '../images/search_icon.svg'
 
 export function search(setCurrency) {
-  const searchInner = () => {
+  const searchInner = (event) => {
     const searchField  = document.getElementById('searchField')
     const text = searchField.value.toLowerCase()
 
@@ -20,6 +19,7 @@ export function search(setCurrency) {
       searchField.value = ''
       searchField.placeholder = 'Termo inválido'
     }
+    event.preventDefault()
   }
 
   return searchInner
@@ -30,6 +30,12 @@ export default function TopBar(){
   const {
     setCurrency
   } = useContext(CurrencyContext)
+        // <input
+        //   data-cy='searchField'
+        //   id='searchField'
+        //   type='text'
+        //   placeholder='Buscar por uma moeda'
+        // />
 
         // <img
         //   data-cy='searchButton'
@@ -42,15 +48,24 @@ export default function TopBar(){
       <div>
         <img className={styles.logo} src={logo} alt='logo' />
       </div>
-      <div className={styles.searchFieldContainer}>
+      <form
+        onSubmit={search(setCurrency)}
+        className={styles.searchFieldContainer}
+      >
         <input
-          data-cy='searchField'
-          id='searchField'
-          type='text'
+          type='search'
+          autoComplete='on'
+          autoSave='true'
           placeholder='Buscar por uma moeda'
+          id='searchField'
+          data-cy='searchField'
         />
-        <i class="fas fa-search" />
-      </div>
+        <button
+          type='submit'
+          className="fas fa-search"
+          data-cy='searchButton'
+        />
+      </form>
     </header>
   );
 };

@@ -62,7 +62,7 @@
     }
 }
 
-.searchFieldContainer > img {
+.searchFieldContainer > button {
     position: absolute;
     transform: translateX(-100%);
     left: 95%;

@@ -5,12 +5,12 @@ it('Gus first impressions', () => {
   // He notes the topbar with the BitInforma logo and the search field
   cy.dataCy('topbar')
     .should('be.visible')
-    .within(($topbar) => {
+    .within(() => {
 
-      cy.get('input[type=text]')
+      cy.get('input')
         .should('be.visible')
 
-      cy.get('img[alt*=search]')
+      cy.get('button')
         .should('be.visible')
     })
 

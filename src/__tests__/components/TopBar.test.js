@@ -26,51 +26,82 @@ describe('search tests', () => {
   })
 
   it('gets the correct input', () => {
+    const event = jest.fn()
+    const mockPreventDefault = jest.fn()
+    event.preventDefault = mockPreventDefault
+
     document.getElementById = jest.fn(() => HTMLInputElement)
     HTMLInputElement.value = ''
 
     const func = search(jest.fn())
-    func()
+    func(event)
 
     expect(document.getElementById).toHaveBeenCalledWith('searchField')
   })
 
   it('search for lowercase only', () => {
+    const event = jest.fn()
+    const mockPreventDefault = jest.fn()
+    event.preventDefault = mockPreventDefault
+
     HTMLInputElement.value = 'ETH'
     document.getElementById = jest.fn(() => HTMLInputElement)
     const setCurrency = jest.fn()
 
     const func = search(setCurrency)
-    func()
+    func(event)
 
     expect(setCurrency).toHaveBeenCalledWith('eth')
 
   })
 
   it('calls setCurrency for a valid value and reset searchField', () => {
+    const event = jest.fn()
+    const mockPreventDefault = jest.fn()
+    event.preventDefault = mockPreventDefault
+
     const setCurrency = jest.fn()
     HTMLInputElement.value = 'eth'
     document.getElementById = jest.fn(() => HTMLInputElement)
 
     const func = search(setCurrency)
-    func()
+    func(event)
 
-    expect(setCurrency).toHaveBeenCalled()
+    expect(setCurrency).toHaveBeenCalledWith('eth')
     expect(HTMLInputElement.value).toEqual('')
   })
 
   it('wont call setCurrency for a invalid value and show a message', () => {
+    const event = jest.fn()
+    const mockPreventDefault = jest.fn()
+    event.preventDefault = mockPreventDefault
+
     const setCurrency = jest.fn()
-    HTMLInputElement.value = 'invalid'
+
     document.getElementById = jest.fn(() => HTMLInputElement)
+    HTMLInputElement.value = 'invalid'
 
     const func = search(setCurrency)
-    func()
+    func(event)
 
     expect(setCurrency).not.toHaveBeenCalled()
     expect(HTMLInputElement.placeholder).toEqual('Termo inválido')
     expect(HTMLInputElement.value).toEqual('')
   })
+
+  it('calls event.disableDefault method to prevent page reload', () => {
+    const event = jest.fn()
+    const mockPreventDefault = jest.fn()
+    event.preventDefault = mockPreventDefault
+
+    HTMLInputElement.value = ''
+    document.getElementById = jest.fn(() => HTMLInputElement)
+
+    const func = search()
+    func(event)
+
+    expect(mockPreventDefault).toHaveBeenCalled()
+  });
 })
 
 describe('<TopBar /> tests', () => {
@@ -90,13 +121,15 @@ describe('<TopBar /> tests', () => {
   })
 
   it('call search when search button is clicked', async () => {
-    const mockSearch = jest.fn()
+    const mockInnerSearch = jest.fn()
+    const mockSearch = jest.fn(() => mockInnerSearch)
     TopBar.__Rewire__('search', mockSearch)
+    // window.HTMLFormElement.prototype.submit = () => mockSearch
 
     testRender()
 
-    fireEvent.click(screen.getByAltText('search button'))
-    expect(mockSearch).toHaveBeenCalled()
+    fireEvent.submit(screen.getByRole('button'))
+    expect(mockInnerSearch).toHaveBeenCalled()
 
     TopBar.__ResetDependency__('search')
 
