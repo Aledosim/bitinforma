@@ -29,6 +29,7 @@ Object {
           <div
             class="price"
             data-cy="price"
+            data-testid="price"
           >
             R$ 
             326.900
@@ -83,6 +84,7 @@ Object {
         <div
           class="price"
           data-cy="price"
+          data-testid="price"
         >
           R$ 
           326.900

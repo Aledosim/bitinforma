@@ -1,13 +1,17 @@
-import { enableFetchMocks  } from 'jest-fetch-mock'
-
-enableFetchMocks()
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 
-import { tickerResponse, summaryResponse } from '../fixtures.json'
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
 import InfoCard, { volHandler, closingHandler, volBRLHandler } from '../../components/InfoCard'
+
+function testRender() {
+    return render(
+      <CurrencyProvider>
+        <InfoCard />
+      </CurrencyProvider>
+    )
+}
 
 describe('volHandler tests', () => {
   it('should return a function', () => {
@@ -67,28 +71,10 @@ describe('volBRLHandler tests', () => {
 });
 
 describe('<InfoCard /> tests', () => {
-  beforeEach(() => {
-    fetch.resetMocks()
-
-    fetch
-      .mockResponse(req => {
-        if (/.*\/ticker\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
-
-        } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
-
-        }
-      })
-  })
 
   it('renders without crashing', async () => {
 
-    const tree = render(
-      <CurrencyProvider>
-        <InfoCard />
-      </CurrencyProvider>
-    )
+    const tree = testRender()
 
     // Check if the fetch data is rendered
     await waitFor(() => {
@@ -96,7 +82,18 @@ describe('<InfoCard /> tests', () => {
     })
 
     expect(tree).toMatchSnapshot()
-
   })
+
+  it('shows the price in the correct format', async () => {
+    testRender()
+
+    // Check if the fetch data is rendered
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledTimes(2)
+    })
+
+    expect(screen.getByTestId('price').textContent).toMatch(/^R\$\s\d+\.\d{3}$/)
+
+  });
 })
 

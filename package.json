@@ -8,15 +8,19 @@
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {
-    "@testing-library/react": "^11.2.5",
-    "cypress": "^6.8.0",
+    "@testing-library/react": "^11.2.7",
+    "babel-plugin-rewire": "^1.2.0",
+    "customize-cra": "^1.0.0",
+    "cypress": "^6.9.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
-    "jest-fetch-mock": "^3.0.3"
+    "jest-fetch-mock": "^3.0.3",
+    "react-app-rewired": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
+    "test": "react-app-rewired test --env=jest-environment-jsdom-sixteen",
+    "coverage": "react-app-rewired test /src/__tests__ --coverage",
     "eject": "react-scripts eject"
   },
   "browserslist": [

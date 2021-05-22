@@ -42,7 +42,7 @@ it('Gus wants to search for other cryptocoins', () => {
   cy.dataCy('searchButton')
     .click()
 
-  // He sees the message of error
+  // He sees the error message
   cy.dataCy('searchField')
     .invoke('attr', 'placeholder')
     .should('be.equal', 'Termo inválido')

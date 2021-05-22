@@ -16,21 +16,23 @@ Object {
             src="logo.svg"
           />
         </div>
-        <div
+        <form
           class="searchFieldContainer"
         >
           <input
+            autocomplete="on"
+            autosave="true"
             data-cy="searchField"
             id="searchField"
             placeholder="Buscar por uma moeda"
-            type="text"
+            type="search"
           />
-          <img
-            alt="search button"
+          <button
+            class="fas fa-search"
             data-cy="searchButton"
-            src="search_icon.svg"
+            type="submit"
           />
-        </div>
+        </form>
       </header>
     </div>
   </body>,
@@ -46,21 +48,23 @@ Object {
           src="logo.svg"
         />
       </div>
-      <div
+      <form
         class="searchFieldContainer"
       >
         <input
+          autocomplete="on"
+          autosave="true"
           data-cy="searchField"
           id="searchField"
           placeholder="Buscar por uma moeda"
-          type="text"
+          type="search"
         />
-        <img
-          alt="search button"
+        <button
+          class="fas fa-search"
           data-cy="searchButton"
-          src="search_icon.svg"
+          type="submit"
         />
-      </div>
+      </form>
     </header>
   </div>,
   "debug": [Function],
