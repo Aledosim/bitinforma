@@ -1,0 +1,21 @@
+name: Example workflow for Codecov
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: npm install
+      uses: jaid/action-npm-install@v1.2.1
+      
+    - name: Generate coverage report
+      run: |
+        npm run coverage
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        directory: ./coverage/reports/
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true
