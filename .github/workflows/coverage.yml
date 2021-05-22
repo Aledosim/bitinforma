@@ -9,6 +9,17 @@ jobs:
     - name: npm install
       uses: jaid/action-npm-install@v1.2.1
       
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        record: true
+        start: npm start
+      env:
+        # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
     - name: Generate coverage report
       run: |
         npm run coverage -- --watchAll=false
