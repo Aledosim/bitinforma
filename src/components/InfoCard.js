@@ -5,6 +5,7 @@ import { CurrencyContext } from '../contexts/CurrencyContext'
 import { CoinLogo } from './CoinLogo'
 
 import styles from '../styles/components/InfoCard.module.css'
+import arrow from '../images/blue_arrow.svg'
 
 export function volHandler () {
 
@@ -81,7 +82,7 @@ export default function InfoCard() {
           Um total de {volBRLHandler()(volBRL)}
         </p>
         <div>
-          <a href='https://www.mercadobitcoin.com.br/negociacoes'>Veja mais -></a>
+          <a href='https://www.mercadobitcoin.com.br/negociacoes'>Veja mais <img src={ arrow } /></a>
         </div>
       </div>
     </div>
