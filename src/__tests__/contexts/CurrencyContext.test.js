@@ -27,20 +27,6 @@ function DefaultMockComponent() {
 }
 
 describe('CurrencyContext', () => {
-  beforeEach(() => {
-    fetch.resetMocks()
-
-    fetch
-      .mockResponse(req => {
-        if (/.*\/ticker\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
-
-        } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
-
-        }
-      })
-  })
 
   it('should make correct http request', async () => {
 

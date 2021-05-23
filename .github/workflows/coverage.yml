@@ -1,0 +1,31 @@
+name: Codecov coverage report
+on: [push, pull_request]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    
+    - name: npm install
+      uses: jaid/action-npm-install@v1.2.1
+      
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        record: true
+        start: npm start
+      env:
+        # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          # pass GitHub token to allow accurately detecting a build vs a re-run build
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Generate coverage report
+      run: |
+        npm run coverage -- --watchAll=false
+        
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        directory: ./coverage/
+        path_to_write_report: ./coverage/codecov_report.txt

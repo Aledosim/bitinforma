@@ -1,10 +1,6 @@
-import { enableFetchMocks  } from 'jest-fetch-mock'
-
-enableFetchMocks()
 import React from 'react'
 import { render, screen, waitFor } from '@testing-library/react'
 
-import { tickerResponse, summaryResponse } from '../fixtures.json'
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
 import InfoCard, { volHandler, closingHandler, volBRLHandler } from '../../components/InfoCard'
@@ -75,20 +71,6 @@ describe('volBRLHandler tests', () => {
 });
 
 describe('<InfoCard /> tests', () => {
-  beforeEach(() => {
-    fetch.resetMocks()
-
-    fetch
-      .mockResponse(req => {
-        if (/.*\/ticker\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
-
-        } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
-
-        }
-      })
-  })
 
   it('renders without crashing', async () => {
 

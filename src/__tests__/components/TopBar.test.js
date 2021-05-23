@@ -1,10 +1,6 @@
-import { enableFetchMocks  } from 'jest-fetch-mock'
-
-enableFetchMocks()
 import React from 'react'
-import { render, screen, fireEvent, act, waitFor } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 
-import { tickerResponse, summaryResponse } from '../fixtures.json'
 import CurrencyProvider from '../../contexts/CurrencyContext'
 
 import TopBar, { search } from '../../components/TopBar'
@@ -105,35 +101,22 @@ describe('search tests', () => {
 })
 
 describe('<TopBar /> tests', () => {
-  beforeEach(() => {
-    fetch.resetMocks()
-
-    fetch
-      .mockResponse(req => {
-        if (/.*\/ticker\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(tickerResponse) })
-
-        } else if (/.*\/day-summary\/.*/.test(req.url)) {
-          return Promise.resolve({ body: JSON.stringify(summaryResponse) })
-
-        }
-      })
-  })
 
   it('call search when search button is clicked', async () => {
     const mockInnerSearch = jest.fn()
     const mockSearch = jest.fn(() => mockInnerSearch)
     TopBar.__Rewire__('search', mockSearch)
-    // window.HTMLFormElement.prototype.submit = () => mockSearch
 
     testRender()
 
+    // The click event flow for forms is not implemented on jsdom
+    // https://github.com/jsdom/jsdom/issues/1937
     fireEvent.submit(screen.getByRole('button'))
     expect(mockInnerSearch).toHaveBeenCalled()
 
     TopBar.__ResetDependency__('search')
 
-    // Check if the fetch data is rendered
+    // Check if the fetch data is rendered to prevent unwanted errors
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledTimes(2)
     })
@@ -144,7 +127,7 @@ describe('<TopBar /> tests', () => {
 
     expect(tree).toMatchSnapshot()
 
-    // Check if the fetch data is rendered
+    // Check if the fetch data is rendered to prevent unwanted errors
     await waitFor(() => {
       expect(fetch).toHaveBeenCalledTimes(2)
     })
