@@ -52,7 +52,10 @@ Object {
             <a
               href="https://www.mercadobitcoin.com.br/negociacoes"
             >
-              Veja mais -&gt;
+              Veja mais 
+              <img
+                src="blue_arrow.svg"
+              />
             </a>
           </div>
         </div>
@@ -107,7 +110,10 @@ Object {
           <a
             href="https://www.mercadobitcoin.com.br/negociacoes"
           >
-            Veja mais -&gt;
+            Veja mais 
+            <img
+              src="blue_arrow.svg"
+            />
           </a>
         </div>
       </div>
