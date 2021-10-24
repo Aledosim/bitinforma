@@ -52,7 +52,7 @@
 ## About The Project
 
 [![BitInforma Screen Shot](.github/images/screenshot.png "BitInforma Screen Shot")](http://bitinforma.vercel.app/)
-This is a landing page to follow criptocurrencies. It have a search field that you can use to change the displayed currency. The project have unit, integration and end-to-end tests to checkout. The interactions between components were developed with React Context API.
+This is a landing page to follow criptocurrencies. It have a search field that you can use to change the displayed currency. The project have unit, integration and end-to-end tests. The interactions between components were developed with React Context API.
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
