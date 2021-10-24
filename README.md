@@ -115,7 +115,7 @@ You can use NPM or YARN to install the dependecies and run the development serve
 <!-- CONTACT -->
 ## Contact
 
-Alexandre do Sim - [LinkedIn](https://www.linkedin.com/in/alexandre-do-sim-86930414b/) - aledosim@yahoo.com.br
+Alexandre do Sim - [LinkedIn](https://www.linkedin.com/in/alexandre-do-sim/) - aledosim@yahoo.com.br
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
